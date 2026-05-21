@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyHub - Professional Study Guides</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8f7f3;
+            color: #2c2c2a;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #5a3fa0 0%, #7f77dd 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            border-bottom: 1px solid #e0dfd9;
+            padding: 1rem 1.5rem;
+            display: flex;
+            gap: 2rem;
+            font-size: 13px;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: #888780;
+            cursor: pointer;
+            padding: 0;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        nav button.active {
+            color: #7f77dd;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            background: #f1efe8;
+        }
+
+        .hero h2 {
+            font-size: 22px;
+            margin-bottom: 1rem;
+            color: #2c2c2a;
+            font-weight: 500;
+        }
+
+        .hero p {
+            color: #888780;
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+            font-size: 14px;
+        }
+
+        .hero button {
+            background: #7f77dd;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .hero button:hover {
+            background: #6b68cc;
+        }
+
+        /* Container */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-header.math {
+            color: #185fa5;
+        }
+
+        .section-header.science {
+            color: #3b6d11;
+        }
+
+        /* Grid */
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 2.5rem;
+        }
+
+        .guide-card {
+            background: white;
+            border: 1px solid #d3d1c7;
+            border-radius: 12px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .guide-card:hover {
+            border-color: #7f77dd;
+            box-shadow: 0 2px 8px rgba(127, 119, 221, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .guide-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .guide-title {
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #2c2c2a;
+        }
+
+        .guide-desc {
+            margin-bottom: 12px;
+            font-size: 12px;
+            color: #888780;
+        }
+
+        .guide-price {
+            font-size: 13px;
+            font-weight: 500;
+            color: #185fa5;
+        }
+
+        /* Icon backgrounds */
+        .icon-blue { background: #e6f1fb; }
+        .icon-amber { background: #faeeda; }
+        .icon-teal { background: #e1f5ee; }
+        .icon-red { background: #fcebeb; }
+        .icon-green { background: #eaf3de; }
+        .icon-pink { background: #fbeaf0; }
+
+        /* Features */
+        .features {
+            background: white;
+            border: 1px solid #d3d1c7;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+        }
+
+        .features h3 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .features ul {
+            list-style-position: inside;
+            font-size: 13px;
+            line-height: 1.8;
+            color: #2c2c2a;
+        }
+
+        .features li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, #5a3fa0 0%, #7f77dd 100%);
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            margin: 2rem auto 0;
+            border-radius: 12px;
+        }
+
+        .cta h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta p {
+            font-size: 14px;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta button {
+            background: white;
+            color: #7f77dd;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .cta button:hover {
+            background: #f0f0f0;
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            border-top: 1px solid #d3d1c7;
+            padding: 2rem 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 12px;
+            color: #888780;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 24px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .guides-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>StudyHub</h1>
+        <p>Professional study guides made by students, for students</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <button class="active">Home</button>
+        <button onclick="scrollToSection('about')">About</button>
+        <button onclick="scrollToSection('contact')">Contact</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h2>Study Smarter, Not Harder</h2>
+        <p>Comprehensive, easy-to-understand study guides written for students. Ace your classes with our complete course materials.</p>
+        <button onclick="alert('Visit Gumroad to purchase guides!')">Browse Guides</button>
+    </div>
+
+    <!-- Math Guides -->
+    <div class="container">
+        <h3 class="section-header math">📐 Math Guides</h3>
+        <div class="guides-grid">
+            <a href="https://gumroad.com" class="guide-card" target="_blank">
+                <div class="guide-icon icon-blue">1/4</div>
+                <p class="guide-title">Mastering Fractions</p>
+                <p class="guide-desc">Basics to advanced operations</p>
+                <p class="guide-price">$4.99</p>
+            </a>
+            <a href="https://gumroad.com" class="guide-card" target="_blank">
+                <div class="guide-icon icon-amber">x</div>
+                <p class="guide-title">Intro to Algebra</p>
+                <p class="guide-desc">Variables & equations</p>
+                <p class="guide-price">$5.99</p>
+            </a>
+            <a href="https://gumroad.com" class="guide-card" target="_blank">
+                <div class="guide-icon icon-teal">◻️</div>
+                <p class="guide-title">Geometry Fundamentals</p>
+                <p class="guide-desc">Shapes & measurements</p>
+                <p class="guide-price">$5.99</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- Science Guides -->
+    <div class="container">
+        <h3 class="section-header science">🔬 Science Guides</h3>
+        <div class="guides-grid">
+            <a href="https://gumroad.com" class="guide-card" target="_blank">
+                <div class="guide-icon icon-red">🛡️</div>
+                <p class="guide-title">Immune System</p>
+                <p class="guide-desc">How your body fights disease</p>
+                <p class="guide-price">$4.99</p>
+            </a>
+            <a href="https://gumroad.com" class="guide-card" target="_blank">
+                <div class="guide-icon icon-blue">💧</div>
+                <p class="guide-title">The Water Cycle</p>
+                <p class="guide-desc">Evaporation to precipitation</p>
+                <p class="guide-price">$4.99</p>
+            </a>
+            <a href="https://gumroad.com" class="guide-card" target="_blank">
+                <div class="guide-icon icon-amber">🌍</div>
+                <p class="guide-title">Solar System</p>
+                <p class="guide-desc">Planets & orbits</p>
+                <p class="guide-price">$5.99</p>
+            </a>
+            <a href="https://gumroad.com" class="guide-card" target="_blank">
+                <div class="guide-icon icon-green">🌲</div>
+                <p class="guide-title">Ecosystems</p>
+                <p class="guide-desc">Food webs & biodiversity</p>
+                <p class="guide-price">$5.99</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="container features">
+        <h3>Why choose StudyHub?</h3>
+        <ul>
+            <li>✓ Written by students who understand the material</li>
+            <li>✓ Professional, easy-to-understand explanations</li>
+            <li>✓ Comprehensive coverage of topics</li>
+            <li>✓ Real-world examples and applications</li>
+            <li>✓ Practice problems included</li>
+            <li>✓ Affordable pricing</li>
+        </ul>
+    </div>
+
+    <!-- CTA -->
+    <div class="container cta">
+        <h3>Get all guides at once</h3>
+        <p>Save 20% with a complete bundle</p>
+        <button onclick="alert('Bundle available on Gumroad!')">Bundle - $24.99</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with 💜 by a student, for students</p>
+        <p>© 2026 StudyHub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function scrollToSection(id) {
+            alert('Section: ' + id);
+        }
+    </script>
+</body>
+</html>
